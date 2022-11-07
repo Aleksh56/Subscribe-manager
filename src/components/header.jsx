@@ -3,10 +3,22 @@ import subs from '../data/data';
 
 const Header = () => {
     const [click, setClick] = useState(false);
-    const titleRef = useRef(null);
-    const costRef = useRef(null);
-    const dateRef = useRef(null);
-    const [sub, setSub] = useState(subs);
+    const [title, setTitle] = useState();
+    const [cost, setCost] = useState();
+    const [date, setDate] = useState();
+    const [sub, setSub] = useState([subs]);
+
+    function handleTitleChange(event) {
+        setTitle(event.target.value);
+    };
+
+    function handleCostChange(event) {
+        setCost(event.target.value);
+    };
+
+    function handleDateChange(event) {
+        setDate(event.target.value);
+    };
 
     function subCounter(){
         let counter = 0;
@@ -17,15 +29,13 @@ const Header = () => {
     }
 
     function handleSubAdd(){
-        const newElement = {
-            _id: 4,
-            title: titleRef.current.value,
-            monthly: costRef.current.value,
-            payment: dateRef.current.value,
-            color: "#00ff00"
-        }
-        console.log(newElement);
-        setSub([...subs, newElement]);
+        setSub([...sub, {
+            _id: sub.length + 1,
+            title: title,
+            monthly: cost,
+            payment: date,
+            color: "#ff0000"
+        }]);
     }
 
     return (
@@ -38,9 +48,9 @@ const Header = () => {
                         <button className='relative text-3xl -top-44 -right-80' onClick={() => setClick(!click)}>X</button>
                         <p className='mb-20'>Add new subscription !</p>
                         <form className='flex items-center justify-between' onSubmit={handleSubAdd}>
-                            <input type="text" name='title' id='title' ref={titleRef} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Title...'/>
-                            <input type="number" name='cost' id='cost' ref={costRef} step={0.01} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Cost/month' />
-                            <input type="number" name='date' id='date' ref={dateRef} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Date of payment' />
+                            <input type="text" name='title' id='title' onChange={handleTitleChange} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Title...'/>
+                            <input type="number" name='cost' id='cost' onChange={handleCostChange} step={0.01} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Cost/month' />
+                            <input type="number" name='date' id='date' onChange={handleDateChange} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Date of payment' />
                         </form>
                         <button className='mt-10 rounded-2xl bg-orange-400 px-7 py-2 hover:bg-orange-300 transition-colors duration-300' type='submit' onClick={() => handleSubAdd}>Submit</button>
                     </div>
