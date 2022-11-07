@@ -2,7 +2,7 @@ import React from 'react';
 import Dashboard from './dashboard/dashboard';
 import ExitButton from './exit-button/exitButton';
 
-const RightSide = () => {
+const RightSide = ({subs}) => {
     return (
         <div className='float-right w-1/4 px-6 bg-black/10 py-2 rounded-lg'>
             <div className='flex items-center justify-between mb-24'>
@@ -12,7 +12,7 @@ const RightSide = () => {
                 </div>
                 <ExitButton />
             </div>
-            <Dashboard />
+            <Dashboard subs={subs} />
         </div>
     );
 };

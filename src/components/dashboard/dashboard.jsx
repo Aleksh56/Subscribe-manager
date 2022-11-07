@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import subs from '../../data/data';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const Dashboard = () => {
+const Dashboard = ({subs}) => {
     const [input, setInput] = useState(false);
     const [profit, setProfit] = useState(160);
 

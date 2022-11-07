@@ -1,7 +1,7 @@
 
-const DelButton = () => {
+const DelButton = ({deleteSub, id}) => {
     return(
-        <button className='mr-4'>
+        <button className='mr-4' onClick={() => deleteSub(id)}>
                     <svg className="h-5 w-5 text-black"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  
                         <path stroke="none" d="M0 0h24v24H0z"/>  
                         <line x1="4" y1="7" x2="20" y2="7" />  

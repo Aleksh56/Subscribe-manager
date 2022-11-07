@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './header';
-import subs from '../data/data';
 import SubscribeCard from './subscribeCard';
 
-const LeftSide = () => {
+const LeftSide = ({subs}) => {
+    const [sub, setSub] = useState(subs);
+
+    const handleSubDelete = (id) => {
+        const copy = [...sub];
+        const current = copy.filter(item => item._id !== id);
+        setSub(current);
+    }
+
     return (
         <div className='float-left w-3/4 px-6'>
-            <Header />
+            <Header length={subs.length} />
             <table className="table-auto w-full text-center">
                 <thead className='py-5 border-b-2 border-slate-300'>
                     <tr>
@@ -16,9 +23,9 @@ const LeftSide = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {subs.map(sub => {
+                    {sub.map(sub => {
                         return(
-                            <SubscribeCard title={sub.title} cost={sub.monthly} date={sub.payment} key={sub._id}/>
+                            <SubscribeCard title={sub.title} cost={sub.monthly} date={sub.payment} key={sub._id} deleteSub={() => handleSubDelete(sub._id)}/>
                         )
                     })}
                 </tbody>
