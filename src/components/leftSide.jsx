@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../style';
 import Header from './header';
 import SubscribeCard from './subscribeCard';
 
@@ -54,7 +55,7 @@ const LeftSide = ({subs}) => {
                     <tr>
                         <td></td>
                         <td>
-                            <span className='text-2xl font-semibold text-red-600'>У вас еще нет ни одной подписки !</span>
+                            <span className={`${styles.defaultHeading2} text-red-600`}>У вас еще нет ни одной подписки !</span>
                         </td>
                         <td></td>
                     </tr>
