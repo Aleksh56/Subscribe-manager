@@ -1,10 +1,9 @@
-import React from 'react';
+import React from 'react'
 import ChangeButton from './change-button/changeButton'
-import DeleteButton from './del-button/DeleteButton';
-import styles from '../style';
+import DeleteButton from './del-button/DeleteButton'
+import styles from '../style'
 
-const SubscribeCard = ({title, cost, date, color, id, deleteSub, onChangeSub}) => {
-
+const SubscribeCard = ({title, cost, date, id, deleteSub, onChangeSub}) => {
     return(
         <tr className='leading-10'>
             <td className={`${styles.heading3}`}>{title}</td>
@@ -15,7 +14,7 @@ const SubscribeCard = ({title, cost, date, color, id, deleteSub, onChangeSub}) =
                 <DeleteButton onDeleteSubs = {() => deleteSub(id)}/>
             </td>
         </tr>
-    );
+    )
 }
 
-export default SubscribeCard;
+export default SubscribeCard

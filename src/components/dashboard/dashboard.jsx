@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import styles from '../../style';
-import { subsAmountCounter } from '../../tools/Amount';
+import React, { useState } from 'react'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
+import { subsAmountCounter } from '../../tools/Amount'
+import styles from '../../style'
 
 const Dashboard = ({subs}) => {
-    const [input, setInput] = useState(false);
-    const [profit, setProfit] = useState(160);
-    const [montly, setMonthly] = useState(subsAmountCounter(subs));
+    const [input, setInput] = useState(false)
+    const [profit, setProfit] = useState(160)
+    const [montly, setMonthly] = useState(subsAmountCounter(subs))
+    let percentage = Math.round(montly / profit * 100);
 
     function handleChange(event) {
-        setProfit(event.target.value);
-    };
-
-    function monthlyChangeHandler(){
-        setMonthly(subsAmountCounter(subs))
+        setProfit(event.target.value)
     }
-
-    let percentage = Math.round(montly / profit * 100);
 
     return(
         <>
@@ -26,7 +21,7 @@ const Dashboard = ({subs}) => {
                     <p className='text-2xl'>Your Profit</p>
                     <div className=''>
                         {!input && <p className={`${styles.heading1}`}>{profit}</p>}
-                        {input && <input type="number" className='border-2 border-black rounded-lg px-3 py-1 w-20 appearance-none' onChange={handleChange} value={profit}/>}
+                        {input && <input type="number" className={`${styles.dashboardForm}`} onChange={handleChange} value={profit}/>}
                     </div>
                     <p>USD/month</p>
                     <button className='mt-2 text-xs text-slate-700/50' onClick={() => setInput(!input)}>change</button>
@@ -48,4 +43,4 @@ const Dashboard = ({subs}) => {
     );
 }
 
-export default Dashboard;
+export default Dashboard

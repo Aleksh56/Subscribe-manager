@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import styles from '../style';
-import Header from './header';
-import SubscribeCard from './subscribeCard';
+import React, { useState } from 'react'
+import styles from '../style'
+import Header from './header'
+import SubscribeCard from './subscribeCard'
 
 const LeftSide = ({subs}) => {
-    const [sub, setSub] = useState(subs);
-    const [subLength, setSubLength] = useState(subs.length);
-    const [uniqKeys, setUniqKeys] = useState(subs.length);
+    const [sub, setSub] = useState(subs)
+    const [subLength, setSubLength] = useState(subs.length)
+    const [uniqKeys, setUniqKeys] = useState(subs.length)
 
     const handleSubDelete = (id) => {
-        const copy = [...sub];
-        const current = copy.filter(item => item._id !== id);
-        setSub(current);
-        setSubLength(current.length);
+        const copy = [...sub]
+        const current = copy.filter(item => item._id !== id)
+        setSub(current)
+        setSubLength(current.length)
     }
 
     const handleSubAdd = (title, cost, date) => {
@@ -21,24 +21,24 @@ const LeftSide = ({subs}) => {
             title: title,
             monthly: cost,
             payment: date,
-            color: "#00ff00"
+            color: '#00ff00'
         }
-        setSub(oldArr => [...oldArr, newValue]);
-        setSubLength(subLength + 1);
-        setUniqKeys(uniqKeys + 1);
+        setSub(oldArr => [...oldArr, newValue])
+        setSubLength(subLength + 1)
+        setUniqKeys(uniqKeys + 1)
     }
 
     const handleSubChange = (id) => {
-        const copy = [...sub];
-        const current = copy.find(item => item._id === id);
+        const copy = [...sub]
+        const current = copy.find(item => item._id === id)
         console.log('You pressed the ' + current._id + " item. Sorry, i don't add change functions...")
     }
 
     return (
-        <div className='float-left w-3/4 px-6'>
+        <div className={`${styles.leftMainBlock}`}>
             <Header length = {subLength} onAdd = {handleSubAdd} subs={subs}/>
-            <table className="table-auto w-full text-center">
-                <thead className='py-5 border-b-2 border-slate-300'>
+            <table className={`${styles.table}`}>
+                <thead className={`${styles.tableHead}`}>
                     <tr>
                         <th className='w-2/6'>Service</th>
                         <th className='w-2/6'>Price<br/>(RUB/Month)</th>
@@ -63,7 +63,7 @@ const LeftSide = ({subs}) => {
                 </tbody>
             </table>
         </div>
-    );
-};
+    )
+}
 
-export default LeftSide;
+export default LeftSide
