@@ -8,28 +8,28 @@ var subs = [
       title: "Netflix",
       monthly: 13.67,
       payment: 24,
-      color: "#ff0000"
+      color: "red"
   },
   {
       _id: 2,
-      title: "Yandex",
-      monthly: 233.68,
+      title: "Yandex.Music",
+      monthly: 3.68,
       payment: 3,
-      color: "#00ff00"
+      color: "amber"
   },
   {
       _id: 3,
-      title: "Yandex",
+      title: "Youtube+",
       monthly: 1.68,
       payment: 3,
-      color: "#00ff00"
+      color: "red"
   },
   {
       _id: 4,
-      title: "Yandex",
+      title: "VK.Music",
       monthly: 27.68,
       payment: 3,
-      color: "#00ff00"
+      color: "sky"
   }
 ]
 

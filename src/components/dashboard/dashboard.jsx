@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { subsAmountCounter } from '../../tools/Amount';
 
 const Dashboard = ({subs}) => {
     const [input, setInput] = useState(false);
     const [profit, setProfit] = useState(160);
+    const [montly, setMonthly] = useState(subsAmountCounter(subs));
 
     function handleChange(event) {
         setProfit(event.target.value);
     };
 
-    function subsAmountCounter() {
-        let counter = 0;
-        subs.forEach(sub => {
-            counter += sub.monthly;
-        })
-        return counter;
+    function monthlyChangeHandler(){
+        setMonthly(subsAmountCounter(subs))
     }
 
-    let myMonthlySubscriptions = subsAmountCounter();
-    let percentage = Math.round(myMonthlySubscriptions / profit * 100);
+    let percentage = Math.round(montly / profit * 100);
 
     return(
         <>
@@ -35,7 +32,7 @@ const Dashboard = ({subs}) => {
                 </div>
                 <div className='flex items-center justify-center text-center flex-col mt-3'>
                     <p className='text-2xl'>Subscription</p>
-                    <p className='text-4xl font-medium'>{myMonthlySubscriptions}</p>
+                    <p className='text-4xl font-medium'>{montly}</p>
                     <p>USD/month</p>
                 </div>
             </div>

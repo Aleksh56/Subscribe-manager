@@ -1,6 +1,6 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 
-const Header = ({length}) => {
+const Header = ({length, onAdd}) => {
     const [click, setClick] = useState(false);
     const [title, setTitle] = useState();
     const [cost, setCost] = useState();
@@ -32,7 +32,7 @@ const Header = ({length}) => {
                             <input type="number" name='cost' id='cost' onChange={handleCostChange} step={0.01} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Cost/month' />
                             <input type="number" name='date' id='date' onChange={handleDateChange} className='border-2 border-black rounded-lg px-3 py-1 mx-2' placeholder='Date of payment' />
                         </form>
-                        <button className='mt-10 rounded-2xl bg-orange-400 px-7 py-2 hover:bg-orange-300 transition-colors duration-300' type='submit'>Submit</button>
+                        <button className='mt-10 rounded-2xl bg-orange-400 px-7 py-2 hover:bg-orange-300 transition-colors duration-300' type='submit' onClick={() => onAdd(title, cost, date)}>Submit</button>
                     </div>
                 </div>}        
         </div>
