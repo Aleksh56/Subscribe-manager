@@ -14,3 +14,15 @@ export const deleteSubs = (sub) => {
         payload: sub
     }
 }
+
+export const saveSubs = () => {
+    return{
+        type: ActionTypes.SAVE_SUBS
+    }
+}
+
+export const setSubs = () => {
+    return{
+        type: ActionTypes.SET_SUBS
+    }
+}

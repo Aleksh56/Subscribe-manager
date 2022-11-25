@@ -39,6 +39,12 @@ export const subReducer = (state = initialState, {type, payload}) => {
         case ActionTypes.REMOVE_SUB:
             const newState = {subs: state.subs.filter(item => item._id !== payload)}
             return newState
+        case ActionTypes.SAVE_SUBS:
+            localStorage.setItem('subs', JSON.stringify(state))
+            return state
+        case ActionTypes.SET_SUBS:
+            const savedData = JSON.parse(localStorage.getItem('subs') || [])
+            return savedData
         default:
             return state
     }
