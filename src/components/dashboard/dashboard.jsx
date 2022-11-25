@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { CircularProgressbar } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import { subsAmountCounter } from "../../tools/Amount"
+import {
+  changeSalary,
+  setSalary,
+  saveSalary,
+} from "../../redux/actions/salaryActions"
 import styles from "../../style"
 
 const Dashboard = () => {
   const subscribes = useSelector((state) => state.allSubs.subs)
+  const salary = useSelector((state) => state.yourSalary.salary)
+  const dispatch = useDispatch()
+
   const [input, setInput] = useState(false)
-  const [profit, setProfit] = useState(160)
   const [montly, setMonthly] = useState(subsAmountCounter(subscribes))
-  let percentage = Math.round((montly / profit) * 100)
+  let percentage = Math.round((montly / salary) * 100)
+
+  useEffect(() => {
+    dispatch(setSalary())
+  }, [])
+
+  useEffect(() => {
+    dispatch(saveSalary())
+  }, [salary])
 
   useEffect(() => {
     setMonthly(subsAmountCounter(subscribes))
@@ -24,13 +39,13 @@ const Dashboard = () => {
         >
           <p className="text-2xl">Your Profit</p>
           <div className="">
-            {!input && <p className={`${styles.heading1}`}>{profit}</p>}
+            {!input && <p className={`${styles.heading1}`}>{salary}</p>}
             {input && (
               <input
                 type="number"
                 className={`${styles.dashboardForm}`}
-                onChange={(event) => setProfit(event.target.value)}
-                value={profit}
+                onChange={(event) => dispatch(changeSalary(event.target.value))}
+                value={salary}
               />
             )}
           </div>
