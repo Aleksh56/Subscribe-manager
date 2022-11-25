@@ -1,31 +1,28 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '../style'
 import Header from './header'
 import SubscribeCard from './subscribeCard'
+import { addSubs, deleteSubs } from '../redux/actions/subsActions'
 
 const LeftSide = ({subs}) => {
+    const subscribes = useSelector(state => state.allSubs.subs);
+    const dispatch = useDispatch();
     const [sub, setSub] = useState(subs)
-    const [subLength, setSubLength] = useState(subs.length)
-    const [uniqKeys, setUniqKeys] = useState(subs.length)
 
     const handleSubDelete = (id) => {
-        const copy = [...sub]
-        const current = copy.filter(item => item._id !== id)
-        setSub(current)
-        setSubLength(current.length)
+        dispatch(deleteSubs(id));
     }
 
     const handleSubAdd = (title, cost, date) => {
         const newValue = {
-            _id: uniqKeys + 1,
+            _id: Date.now(),
             title: title,
-            monthly: cost,
+            monthly: Number(cost),
             payment: date,
             color: '#00ff00'
         }
-        setSub(oldArr => [...oldArr, newValue])
-        setSubLength(subLength + 1)
-        setUniqKeys(uniqKeys + 1)
+        dispatch(addSubs(newValue));
     }
 
     const handleSubChange = (id) => {
@@ -36,7 +33,7 @@ const LeftSide = ({subs}) => {
 
     return (
         <div className={`${styles.leftMainBlock}`}>
-            <Header length = {subLength} onAdd = {handleSubAdd} subs={subs}/>
+            <Header onAdd = {handleSubAdd} subs={subs}/>
             <table className={`${styles.table}`}>
                 <thead className={`${styles.tableHead}`}>
                     <tr>
@@ -46,12 +43,13 @@ const LeftSide = ({subs}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sub.length > 0 && sub.map(sub => {
+                    {subscribes.length > 0 && subscribes.map(subscribe => {
+                        const {_id, title, monthly, payment, color} = subscribe;
                         return(
-                            <SubscribeCard title={sub.title} cost={sub.monthly} date={sub.payment} color={sub.color} key={sub._id} deleteSub={() => handleSubDelete(sub._id)} onChangeSub={() => handleSubChange(sub._id)}/>
+                            <SubscribeCard title={title} cost={monthly} date={payment} color={color} id={_id} key={_id} deleteSub={() => handleSubDelete(_id)} onChangeSub={() => handleSubChange(_id)}/>
                         )
                     })}
-                    {sub.length <= 0 && 
+                    {subscribes.length <= 0 && 
                     <tr>
                         <td></td>
                         <td>

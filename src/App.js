@@ -36,7 +36,7 @@ var subs = [
 function App() {
   return (
     <div className='container mx-auto py-5'>
-      <LeftSide subs={subs} />
+      <LeftSide />
       <RightSide subs={subs} />
     </div>
   );

@@ -13,7 +13,7 @@ const RightSide = ({subs}) => {
                 </div>
                 <ExitButton />
             </div>
-            <Dashboard subs={subs} />
+            {<Dashboard subs={subs} />}
         </div>
     )
 }

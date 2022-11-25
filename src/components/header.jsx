@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux';
 import styles from '../style'
 
-const Header = ({length, onAdd}) => {
+const Header = ({onAdd}) => {
+    const subscribes = useSelector(state => state.allSubs.subs);
     const [click, setClick] = useState(false)
     const [title, setTitle] = useState()
     const [cost, setCost] = useState()
@@ -21,7 +23,7 @@ const Header = ({length, onAdd}) => {
 
     return (
         <div className={`mb-9 ${styles.flexNav}`}>
-            <p className={`${styles.heading2}`}>Subscriptions: {length}</p>
+            <p className={`${styles.heading2}`}>Subscriptions: {subscribes.length}</p>
             <button onClick={() => setClick(!click)} className={`${styles.button} ${styles.transition} hover:bg-amber-300`}>Add</button>
 
             {click && <div className={`${styles.flexCenter} ${styles.popUp}`} onClick={() => setClick(!click)}>

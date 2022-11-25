@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import {useSelector} from 'react-redux'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import { subsAmountCounter } from '../../tools/Amount'
 import styles from '../../style'
 
 const Dashboard = ({subs}) => {
+    const subscribes = useSelector(state => state.allSubs.subs);
     const [input, setInput] = useState(false)
     const [profit, setProfit] = useState(160)
-    const [montly, setMonthly] = useState(subsAmountCounter(subs))
+    const [montly, setMonthly] = useState(subsAmountCounter(subscribes))
     let percentage = Math.round(montly / profit * 100);
+
+    useEffect(() => {
+      setMonthly(subsAmountCounter(subscribes))
+    }, [subscribes])
+    
 
     function handleChange(event) {
         setProfit(event.target.value)
@@ -28,7 +35,7 @@ const Dashboard = ({subs}) => {
                 </div>
                 <div className={`${styles.flexCenterCol} text-center mt-3`}>
                     <p className='text-2xl'>Subscription</p>
-                    <p className={`${styles.heading1}`}>{montly}</p>
+                    <p className={`${styles.heading1}`}>{Math.floor(montly * 100) / 100}</p>
                     <p>USD/month</p>
                 </div>
             </div>
