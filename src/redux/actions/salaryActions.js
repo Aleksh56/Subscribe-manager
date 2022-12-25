@@ -1,20 +1,6 @@
+import { createAction } from "@reduxjs/toolkit"
 import { ActionTypes } from "../constants/actionTypes"
 
-export const changeSalary = (value) => {
-    return{
-        type: ActionTypes.CHANGE_SALARY,
-        payload: value
-    }
-}
-
-export const saveSalary = () => {
-    return{
-        type: ActionTypes.SAVE_SALARY
-    }
-}
-
-export const setSalary = () => {
-    return{
-        type: ActionTypes.SET_SALARY
-    }
-}
+export const changeSalary = createAction(ActionTypes.CHANGE_SALARY);
+export const saveSalary = createAction(ActionTypes.SAVE_SALARY);
+export const setSalary = createAction(ActionTypes.SET_SALARY);

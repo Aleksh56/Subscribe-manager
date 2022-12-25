@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../style"
 import Dashboard from "./dashboard/dashboard"
-import ExitButton from "./exit-button/exitButton"
+import ExitButton from "./Buttons/exit-button/exitButton"
 
 const RightSide = () => {
   return (

@@ -1,28 +1,7 @@
+import { createAction } from "@reduxjs/toolkit"
 import { ActionTypes } from "../constants/actionTypes"
 
-
-export const addSubs = (sub) => {
-    return {
-        type: ActionTypes.ADD_SUB,
-        payload: sub
-    }
-}
-
-export const deleteSubs = (sub) => {
-    return {
-        type: ActionTypes.REMOVE_SUB,
-        payload: sub
-    }
-}
-
-export const saveSubs = () => {
-    return{
-        type: ActionTypes.SAVE_SUBS
-    }
-}
-
-export const setSubs = () => {
-    return{
-        type: ActionTypes.SET_SUBS
-    }
-}
+export const addSubs = createAction(ActionTypes.ADD_SUB);
+export const deleteSubs = createAction(ActionTypes.REMOVE_SUB);
+export const saveSubs = createAction(ActionTypes.SAVE_SUBS);
+export const setSubs = createAction(ActionTypes.SET_SUBS);

@@ -13,3 +13,15 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+if(module.hot){
+  module.hot.accept('./App', () => {
+    root.render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </React.StrictMode>
+    )
+  })
+}

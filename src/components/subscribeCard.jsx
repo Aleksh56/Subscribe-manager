@@ -1,6 +1,6 @@
 import React from "react"
-import ChangeButton from "./change-button/changeButton"
-import DeleteButton from "./del-button/DeleteButton"
+import ChangeButton from "./Buttons/change-button/changeButton"
+import DeleteButton from "./Buttons/del-button/DeleteButton"
 import styles from "../style"
 
 const SubscribeCard = ({ title, cost, date, id, deleteSub, onChangeSub }) => {
